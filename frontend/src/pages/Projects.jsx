@@ -35,7 +35,9 @@ export default function Projects() {
       setShowForm(false)
       fetchProjects()
     } catch (err) {
-      alert(err.response?.data?.detail || 'Failed to create project')
+      console.error('Error creating project:', err)
+      const errorMsg = err.response?.data?.detail || err.message || 'Failed to create project'
+      alert(typeof errorMsg === 'string' ? errorMsg : JSON.stringify(errorMsg))
     }
   }
 
